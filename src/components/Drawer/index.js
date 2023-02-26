@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './Drawer.module.scss';
 import axios from 'axios';
 
-const Drawer = () => {
+const Drawer = (props) => {
     return (
         <div className={styles.overlay}>
         <div className={styles.drawer}>
           <div className={styles.drawer__header}>
           <h2>Cart</h2>
-          <svg className={styles.drawer__headerClose} width="30px" height="30px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+          <svg onClick={props.onCloseCart} className={styles.drawer__headerClose} width="30px" height="30px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                 <g id="SVGRepo_bgCarrier" strokeWidth="0" />
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
                 <g id="SVGRepo_iconCarrier">

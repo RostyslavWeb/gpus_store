@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-export default class Header extends Component {
-  render() {
+const Header = (props) => {
+
+
     return (
         <header className="header">
         <div className="header__logo">
@@ -15,7 +16,7 @@ export default class Header extends Component {
           <li className="menu__item">
             0.00$
           </li>
-          <li className="menu__item">
+          <li className="menu__item" onClick={props.onClickCart}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.5 8.5L7.5 8C7.5 7.53566 7.5 7.30349 7.51926 7.10793C7.70631 5.20882 9.20882 3.70631 11.1079 3.51926C11.3035 3.5 11.5357 3.5 12 3.5V3.5C12.4643 3.5 12.6965 3.5 12.8921 3.51926C14.7912 3.7063 16.2937 5.20882 16.4807 7.10793C16.5 7.30349 16.5 7.53566 16.5 8L16.5 8.5" stroke="#222222" strokeLinecap="round" />
               <path d="M15.5 13.5V11.5" stroke="#222222" strokeLinecap="round" />
@@ -38,5 +39,6 @@ export default class Header extends Component {
         </ul>
       </header>
     )
-  }
 }
+
+export default Header;

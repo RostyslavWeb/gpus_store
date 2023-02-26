@@ -14,7 +14,7 @@ const Card = ({
   const [isAdded, setIsAdded] = React.useState();
 
   const onClickPlus = () => {
-    setIsAdded(true);
+    setIsAdded(!isAdded);
   }
 
   return (
@@ -30,7 +30,7 @@ const Card = ({
             <span>Price:&nbsp;</span>
             <b>{price}$</b>
           </div>
-            <img onClick={onClickPlus} className={styles.plusImgg} height={40} width={40} src="./images/plus.png" alt="icon" />
+            <img className={styles.plusImgg} onClick={onClickPlus} height={40} width={40} src={isAdded ? "./images/check.png" : "./images/plus.png"} alt="icon" />
         </div>
       </div>
     </div>

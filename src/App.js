@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Header from './components/Header';
@@ -9,28 +9,29 @@ import firebase from './firebase';
 
 function App() {
 
-const [gpus, setGpus] = useState([]);
+  const [gpus, setGpus] = React.useState([]);
+  const [cartOpened, setCartOpened] = React.useState(false);
 
-useEffect(() => {
-  const database = firebase.firestore();
-  database
-    .collection("gpus")
-    .get()
-    .then(snapshot => {
-      const dataArray = [];
-      snapshot.forEach(doc => dataArray.push({ ...doc.data(), id: doc.id }));
-      setGpus(dataArray);
-      console.log(dataArray);
-    });
-}, []);
+  useEffect(() => {
+    const database = firebase.firestore();
+    database
+      .collection("gpus")
+      .get()
+      .then(snapshot => {
+        const dataArray = [];
+        snapshot.forEach(doc => dataArray.push({ ...doc.data(), id: doc.id }));
+        setGpus(dataArray);
+      });
+  }, []);
+
 
 
   return (
     <div className="container">
 
-      <Drawer/>
+      {cartOpened && <Drawer onCloseCart={() => setCartOpened(false)} />}
 
-      <Header/>
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <main className="main">
 
@@ -44,13 +45,16 @@ useEffect(() => {
         </section>
 
         <section className="section__gpus">
-          <Card 
-          title="MSI - NVIDIA GeForce RTX 4090"
-          price={1649}
-          imageUrl="./images/gpus/4090.jpg"
-          onFavorite={()=> console.log("OnFavorite")}
-          onPlus={()=> console.log("OnPlus")}
-          />
+          {gpus.map((gpu) => (
+            <Card
+              key={gpu.id}
+              title={gpu.title}
+              price={gpu.price}
+              imageUrl={gpu.imageUrl}
+              onFavorite={() => console.log("OnFavorite")}
+              onPlus={() => console.log("OnPlus")}
+            />
+          ))}
         </section>
 
       </main>
